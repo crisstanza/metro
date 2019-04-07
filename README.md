@@ -1,8 +1,8 @@
-# Metro
+# METRO
 
 Metr&ocirc;nomo musical/visual para acompanhamento de m&uacute;sicas e exerc&iacute;cios.
 
-https://crisstanza.github.io/piano-chords-svg/
+https://crisstanza.github.io/metro/
 
 Configura&ccedil;&atilde;o Apache:
 
