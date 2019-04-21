@@ -18,20 +18,19 @@ if (!io.github.crisstanza.Autos) io.github.crisstanza.Autos = {};
 				link.addEventListener('click', function(event) { eval(target + identifier + '_OnClick(event)'); } );
 			}
 		);
+		return elements;
 	};
 
 	io.github.crisstanza.Autos.initIds = function(_parent) {
 		var parent = _parent ? _parent : document;
 		let elements = parent.querySelectorAll('[id]:not([id=""])');
-		if (elements) {
-			let length = elements.length;
-			for (let i = 0 ; i < length ; i++) {
-				let element = elements[i];
+		$.forEach(
+			elements, function(element, index) {
 				let id = element.getAttribute('id');
 				let identifier = fixId(id);
 				window[identifier] = element;
 			}
-		}
+		);
 		return elements;
 	};
 
