@@ -22,3 +22,13 @@ Permiss&otilde;es
 Restart:
 
     sudo apachectl -k restart
+
+
+Configura&ccedil;&atilde;o Tomcat:
+
+    /etc/tomcat/conf/Catalina/localhost/metro/xml
+    <Context docBase="/path-to/metro/" reloadable="true" />
+
+Restart:
+
+    shutdown.sh ; startup.sh
