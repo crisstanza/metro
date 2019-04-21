@@ -7,8 +7,22 @@ if (!io.github.crisstanza.Autos) io.github.crisstanza.Autos = {};
 
 (function() {
 
-	io.github.crisstanza.Autos.initIds = function() {
-		let elements = document.querySelectorAll('[id]:not([id=""])');
+	io.github.crisstanza.Autos.initLinks = function(_parent, _target) {
+		var parent = _parent ? _parent : document;
+		let elements = parent.querySelectorAll('a:not([href]):not([href=""])');
+		let target = _target ? '_target.' : '';
+		$.forEach(
+			elements, function(link, index) {
+				let id = link.getAttribute('id');
+				let identifier = fixId(id);
+				link.addEventListener('click', function(event) { eval(target + identifier + '_OnClick(event)'); } );
+			}
+		);
+	};
+
+	io.github.crisstanza.Autos.initIds = function(_parent) {
+		var parent = _parent ? _parent : document;
+		let elements = parent.querySelectorAll('[id]:not([id=""])');
 		if (elements) {
 			let length = elements.length;
 			for (let i = 0 ; i < length ; i++) {

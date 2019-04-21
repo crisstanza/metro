@@ -6,6 +6,16 @@ if (!$) var $ = {};
 
 	if (!$.ajax) $.ajax = {};
 
+	$.forEach = function(elements, callback) {
+		if (elements) {
+			let length = elements.length;
+			for (let i = 0 ; i < length ; i++) {
+				let element = elements[i];
+				callback(element, i);
+			}
+		}
+	};
+
 	$.ajax.get = function(url, target, callback, callbackError) {
 		let request = new XMLHttpRequest();
 		if (callback) {
