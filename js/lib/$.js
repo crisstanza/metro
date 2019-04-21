@@ -38,4 +38,8 @@ if (!$) var $ = {};
 		request.send();
 	};
 
+	$.removeComments = function(str) {
+		return str.replace(/(\/\*[\S\s]*?\*\/)|(\/\/[^\n]*)/g, '');
+	};
+
 })();

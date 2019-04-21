@@ -17,18 +17,39 @@ if (!io.github.crisstanza.Metro) io.github.crisstanza.Metro = {};
 	io.github.crisstanza.Metro.prototype.loadContainerHtml = function() {
 		$.ajax.get(
 			'./lib/io.github.crisstanza.Metro.html', this,
-			function(target, status, responseText) { target.loadContainerHtml_Callback(target, status, responseText); },
-			function(target, status, responseText) { target.loadContainerHtml_CallbackError(target, status, responseText); }
+			function(target, status, responseText) { target.loadContainerHtml_Callback(status, responseText); },
+			function(target, status, responseText) { target.loadContainerHtml_CallbackError(status, responseText); }
 		);
 	};
 
-	io.github.crisstanza.Metro.prototype.loadContainerHtml_Callback = function(target, status, responseText) {
+	io.github.crisstanza.Metro.prototype.loadContainerHtml_Callback = function(status, responseText) {
 		this.container.innerHTML = responseText;
 		io.github.crisstanza.Autos.initIds();
-		io.github.crisstanza.Autos.initLinks(metro, this);		
+		io.github.crisstanza.Autos.initLinks(this.container, this);
+		this.loadMusic();
 	};
 
-	io.github.crisstanza.Metro.prototype.loadContainerHtml_CallbackError = function(target, status, responseText) {
+	io.github.crisstanza.Metro.prototype.loadMusic = function() {
+		let mainLink = document.querySelector('article header h1 span a');
+		$.ajax.get(
+			mainLink.getAttribute('href')+'.js', this,
+			function(target, status, responseText) { target.loadMusic_Callback(status, responseText); },
+			function(target, status, responseText) { target.loadMusic_CallbackError(status, responseText); }
+		);
+	};
+
+	io.github.crisstanza.Metro.prototype.loadMusic_Callback = function(status, responseText) {
+		let musicText = $.removeComments(responseText);
+		this.music = JSON.parse(musicText);
+		speed.innerHTML = this.music.speed;
+		meter.innerHTML = this.music.meter;
+	};
+
+	io.github.crisstanza.Metro.prototype.loadMusic_CallbackError = function(status, responseText) {
+		this.container.innerHTML = status;
+	};
+
+	io.github.crisstanza.Metro.prototype.loadContainerHtml_CallbackError = function(status, responseText) {
 		this.container.innerHTML = status;
 	};
 
