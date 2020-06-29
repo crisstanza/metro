@@ -32,3 +32,8 @@ Configura&ccedil;&atilde;o Tomcat:
 Restart:
 
     shutdown.sh ; startup.sh
+
+Links:
+
+	https://image.online-convert.com/
+	https://findicons.com/
